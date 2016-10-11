@@ -1,0 +1,26 @@
+{
+  "name": "stanhua",
+  "version": "0.1.0",
+  "description": "stan UI",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stanHuaHub/stanUI.git"
+  },
+  "license": "MIT",
+  "files": [
+    "src",
+    "dist",
+    "base"
+  ],
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-cssmin": "^0.6.2",
+    "grunt-contrib-htmlmin": "^0.1.3",
+    "grunt-contrib-imagemin": "^0.1.4",
+    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-contrib-less": "^1.4.0",
+    "grunt-contrib-uglify": "^0.2.7",
+    "grunt-contrib-watch": "^1.0.0"
+  }
+}

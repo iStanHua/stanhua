@@ -1,0 +1,78 @@
+@baseColor:#4d8cd9;
+@hoverColor:#5e9df0;
+@activeColor:#2d8cd9;
+@borderColor:#ededed;
+@bgColor:#eee;;
+@whiteColor:#fff;
+@fontColor:#333;
+@grayColor:#999;
+@redColor:#f00;
+@defaultColor:#f7f7f7;
+@disabledColor:#bdc3c7;
+@successColor:#5eb95e;
+@successStartColor:#62c462;
+@successEndColor:#57a957;
+@successTxtColor:#3c763d;
+@infoColor:#4bb1cf;
+@infoStartColor:#5bc0de;
+@infoEndColor:#339bb9;
+@infoTxtColor:#31708f;
+@warningColor:#faa732;
+@warningStartColor:#fbb450;
+@warningEndColor:#f89406;
+@warningTxtColor:#8a6d3b;
+@dangerColor:#dd514c;
+@dangerStartColor:#ee5f5b;
+@dangerEndColor:#c43c35;
+@dangerTxtColor:#a94442;
+@radius:10px;
+@fontSize:16px;
+.cl(){
+    content: ".";
+    display: block;
+    width: 0;
+    height: 0;
+    visibility: hidden;
+    clear: both;
+}
+.ellipsis(){
+    white-space: nowrap;text-overflow: ellipsis;overflow: hidden;
+}
+.opacity(@o){
+  @alp:@o*100;
+  opacity: @o;
+  filter: alpha(opacity=@alp);
+}
+.linear-gradient(@point,@color,@repeat,@startColor,@endColor){
+  background-color:@color;
+  background-repeat: @repeat; 
+  background-image: -webkit-linear-gradient(@point, @startColor, @endColor); /* For Chrome 25 and Safari 6, iOS 6.1, Android 4.3 */
+  background-image:    -moz-linear-gradient(@point, @startColor, @endColor); /* For Firefox (3.6 to 15) */
+  background-image:      -o-linear-gradient(@point, @startColor, @endColor); /* For old Opera (11.1 to 12.0) */ 
+  background-image:         linear-gradient(@point, @startColor, @endColor); /* Standard syntax; must be last */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr= @startColor, endColorstr= @endColor,GradientType=0 ); /* IE6-8 */
+}
+.box-shadow(@style, @c) when (iscolor(@c)) {
+  box-shadow:         @style @c;
+}
+.box-shadow(@style, @alpha: 50%) when (isnumber(@alpha)) {
+  .box-shadow(@style, rgba(0, 0, 0, @alpha));
+}
+.text-shadow(@style, @c) when (iscolor(@c)) {
+  text-shadow:         @style @c;
+}
+.text-shadow(@style, @alpha: 50%) when (isnumber(@alpha)) {
+  .text-shadow(@style, rgba(0, 0, 0, @alpha));
+}
+.transition(@style){
+  -webkit-transition: @style;
+  transition: @style;
+}
+.animation(@style){
+  -webkit-animation: @style;
+  animation: @style;
+}
+.animation-name(@name){
+  -webkit-animation-name: @name;
+  animation-name: @name;
+}
