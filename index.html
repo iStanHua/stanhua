@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<!--[if IE 6]><html class="ie6"><![endif]-->
+<!--[if IE 7]><html class="ie7"><![endif]-->
+<!--[if IE 8]><html class="ie8"><![endif]-->
+<!--[if IE 9]><html class="ie9"><![endif]-->
+<!--[if(gt IE 9)|!(IE)]><!-->
+<html lang="en">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>首页</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable-style" content="blank" />
+    <meta name="apple-mobile-web-app-title" content="Stan UI" />
+    <meta name="format-detection" content="telephone=no,email=no" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="dist/css/base.css" />
+    <!--[if lt IE 9]>
+        <script type="text/javscript" src="dist/js/lib/html5shiv.min.js"></script>
+        <script type="text/javscript" src="dist/js/lib/respond.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="dist/js/lib/jquery.js"></script>
+    <script type="text/javascript" src="dist/js/base.js"></script>
+    <script>
+            $(function(){
+                $('.progress-info .bar').css('width','30%');
+                $('.progress-success .bar').css('width','100%');
+                $('.progress-warning .bar').css('width','70%');
+                $('.progress-danger .bar').css('width','90%');
+                $('.progress-striped .bar').css('width','80%');
+            
+                $('.toggle-panel').stanToggle({
+                    callback:function(open){
+                        console.log(open);
+                    }
+                });
+                $('#iSearch').stanInput({
+                    clear: true,
+                    success:function($this){
+                         searchList($this);
+                    },
+                    equalCallback:function($this){
+                         searchList($this);
+                    }
+                });
+                $('.dropdown').stanDropdown();
+                $('.tabs').stanTabs({
+                    success:function(index,$this){
+                        var $content=$this.next('.tabs-content');
+                        if($content.length>0){
+                             $content.find('.tabs-slide').eq(index).addClass('active').siblings().removeClass('active');
+                        }                    
+                    }
+                });
+                $('.switch-box').stanSwitch();
+            });
+            function searchList($this){
+                var result=['北京','天津','上海','重庆'];
+                $this.stanAutocomplete({
+                    data:result
+                });
+            
+                // stanUI.httpRequest({
+                //     url:'http://apis.baidu.com/avatardata/mingrenmingyan/lookup?keyword='+$this.val()+'&page=1&rows=20',
+                //     type:'get',
+                //     headerType:'apikey',
+                //     headerValue:'77a37f9575227131d5c1b1a77c6ea7f3',
+                //     dataType:'json',
+                //     tips: '',
+                //     success:function(data){
+                //         if(data.error_code=='0'){ 
+                //             var total=data.total;
+                //             $this.stanAutocomplete({
+                //                 data:data.result,
+                //                 dataVal:'famous_saying',
+                //                 dataId:'famous_name'
+                //             });
+                //         }                  
+                //     }
+                // });
+            }
+        </script>
+    <style>
+        .navbox {
+            margin-top: 20px;
+        }
+        
+        .navbox img {
+            width: 40px;
+            height: 40px;
+        }
+        
+        .btn-panel .btn-list {
+            padding: 0 10px 10px 0;
+        }
+        
+        .btn-panel .btn,
+        .btn-panel .btn-icon {
+            margin: 10px 0 0 10px;
+        }
+        
+        .progress-panel .panel-content {
+            padding: 0 10px 10px 10px;
+        }
+        
+        .progress-panel .progress {
+            margin-top: 10px;
+        }
+        
+        .dropdown-panel .panel-content {
+            padding: 10px;
+        }
+        
+        .tabs-panel .tabs{
+            margin: 10px 0;
+        }
+        .tabs-box {
+            margin: 10px 0;
+        }
+        
+        .nav-tabs {
+            padding-left: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <div class="header">
+            <div class="wrapper">
+                <div class="nav-logo">
+                    <a href="/"><img src="dist/images/logo.png" /></a>
+                </div>
+                <div class="navbar">
+                    <div class="nav cl">
+                        <a class="item active" href="index.html"><span>首页</span></a>
+                        <a class="item" href="icon.html"><span>图标</span></a>
+                        <div class="item dropdown">
+                            <a class="dropdown-toggle" data-toggle='dropdown'>
+                                <span>其它</span>
+                                <b class="icon i-triangle-down"></b>
+                            </a>
+                            <div class="dropdown-menu">
+                                <div class="dropdown-header">实例</div>
+                                <a class="item" href="moiblecode.html"><span>手机区号</span></a>
+                                <a class="item" href="layer.html"><span>弹窗</span></a>
+                                <div class="divider"></div>
+                                <a class="item" href="scroll.html"><span>滚动加载</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pos-right">
+                    <a class="icon i-search"></a>
+                </div>
+            </div>
+        </div>
+        <div class="content full-bottom-content">
+            <div class="wrapper">
+                <div class="gridview cl navbox">
+                    <a class="item">
+                        <img src="dist/images/price.png" />
+                        <h2>抢红包</h2>
+                    </a>
+                    <a class="item">
+                        <img src="dist/images/gift.png" />
+                        <h2>礼物</h2>
+                    </a>
+                    <a class="item">
+                        <img src="dist/images/server.png" />
+                        <h2>业务</h2>
+                    </a>
+                    <a class="item">
+                        <img src="dist/images/phone.png" />
+                        <h2>手机区</h2>
+                    </a>
+                    <a class="item">
+                        <img src="dist/images/order.png" />
+                        <h2>我的订单</h2>
+                    </a>
+                    <a class="item">
+                        <img src="dist/images/num.png" />
+                        <h2>统计</h2>
+                    </a>
+                </div>
+                <div class="panel btn-panel toggle-panel open">
+                    <div class="panel-title">
+                        <span>Buttons</span>
+                        <div class="pos-right">
+                            <b class="icon i-carat-down"></b>
+                        </div>
+                    </div>
+                    <div class="panel-content">
+                        <div class="title"><span>Button</span></div>
+                        <div class="btn-list">
+                            <a class="btn btn-default">Default</a>
+                            <a class="btn btn-primary">Primary</a>
+                            <a class="btn btn-success">Success</a>
+                            <a class="btn btn-info">Info</a>
+                            <a class="btn btn-disabled">Disabled</a>
+                            <a class="btn btn-warning">Warning</a>
+                            <a class="btn btn-danger">Danger</a>
+                        </div>
+                        <div class="title"><span>Icon Button</span></div>
+                        <div class="btn-list">
+                            <a class="btn-icon">
+                                <span>首页</span>
+                                <b class="icon i-carat-left"></b>
+                            </a>
+                            <a class="btn-icon icon-right">
+                                <span>更多</span>
+                                <b class="icon i-carat-right"></b>
+                            </a>
+                            <a class="btn-icon icon-btns">
+                                <b class="icon i-location"></b>
+                                <b class="icon i-carat-right"></b>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel progress-panel toggle-panel open">
+                    <div class="panel-title">
+                        <span>Progress</span>
+                        <div class="pos-right">
+                            <b class="icon i-carat-down"></b>
+                        </div>
+                    </div>
+                    <div class="panel-content">
+                        <div class="progress">
+                            <div class="load" style="width: 60%;"></div>
+                            <div class="bar" style="width: 50%;"></div>
+                        </div>
+                        <div class="progress progress-success">
+                            <div class="bar"></div>
+                        </div>
+                        <div class="progress progress-info">
+                            <div class="bar"><span>30%</span></div>
+                        </div>
+                        <div class="progress progress-warning">
+                            <div class="bar"></div>
+                        </div>
+                        <div class="progress progress-danger">
+                            <div class="bar"></div>
+                        </div>
+                        <div class="progress progress-striped active">
+                            <div class="bar"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel dropdown-panel toggle-panel open">
+                    <div class="panel-title">
+                        <span>Dropdown</span>
+                        <div class="pos-right">
+                            <b class="icon i-carat-down"></b>
+                        </div>
+                    </div>
+                    <div class="panel-content">
+                        <div class="dropdown">
+                            <a class="dropdown-toggle" data-toggle='dropdown'>
+                                <span>其它</span>
+                                <b class="icon i-triangle-down"></b>
+                            </a>
+                            <div class="dropdown-menu">
+                                <div class="dropdown-header">实例</div>
+                                <a class="item"><span>手机区号</span></a>
+                                <a class="item"><span>弹窗</span></a>
+                                <div class="divider"></div>
+                                <a class="item active"><span>滚动加载</span></a>
+                                <a class="item"><span>抢红包</span></a>
+                            </div>
+                        </div>
+
+                        <div class="dropdown select">
+                            <a class="dropdown-toggle" data-toggle='select'>
+                                <span>城市</span>
+                                <b class="icon i-triangle-down"></b>
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="item"><span>北京</span></a>
+                                <a class="item active"><span>深圳</span></a>
+                                <a class="item"><span>上海</span></a>
+                            </div>
+                        </div>
+                        <div class="dropdown select">
+                            <a class="dropdown-toggle" data-toggle='select'>
+                                <span>区域</span>
+                                <b class="icon i-triangle-down"></b>
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="item"><span>罗湖区</span></a>
+                                <a class="item"><span>福田区</span></a>
+                                <a class="item active"><span>南山区</span></a>
+                                <a class="item"><span>龙华新区</span></a>
+                                <a class="item"><span>宝安区</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tabs-box">
+                    <div class="tabs-title">
+                        <div class="tabs">
+                            <a class="item active">Listview</a>
+                            <a class="item">Groupview</a>
+                            <a class="item">Gridview</a>
+                            <a class="item">Form</a>
+                            <div class="line"></div>
+                        </div>
+                    </div>
+                    <div class="tabs-content">
+                        <div class="tabs-wrapper">
+                        <div class="tabs-slide active">
+                            <div class="listview">
+                                <a class="item">
+                                    <span>图标</span>
+                                    <div class="pos-right">
+                                        <div class="btn-icon icon-right">
+                                            <span>116</span>
+                                            <b class="icon i-carat-right"></b>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a class="item"><span>抢红包</span></a>
+                                <a class="item">
+                                    <span>手机区号</span>
+                                    <div class="pos-right">
+                                        <b class="icon i-carat-right"></b>
+                                    </div>
+                                </a>
+                                <a class="item">
+                                    <span>弹窗</span>
+                                    <div class="pos-right">
+                                        <div class="btn-icon icon-right">
+                                            <span>11</span>
+                                            <b class="icon i-carat-right"></b>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a class="item">
+                                    <div class="btn-icon">
+                                        <b class="icon i-call"></b>
+                                        <span>滚动加载</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="tabs-slide">
+                            <div class="groupview">
+                                <a class="item">
+                                    <div class="pos-left">
+                                        <b class="icon i-android"></b>
+                                    </div>
+                                    <span>android</span>
+                                    <div class="pos-right">
+                                        <b class="icon i-carapos-right"></b>
+                                    </div>
+                                </a>
+                                <a class="item">
+                                    <div class="pos-left">
+                                        <b class="icon i-apple"></b>
+                                    </div>
+                                    <span>iphone</span>
+                                    <div class="pos-right">
+                                        <b class="icon i-carapos-right"></b>
+                                    </div>
+                                </a>
+                                <a class="item">
+                                    <div class="pos-left">
+                                        <b class="icon i-window"></b>
+                                    </div>
+                                    <span>winPhone</span>
+                                    <div class="pos-right">
+                                        <b class="icon i-carapos-right"></b>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="tabs-slide">
+                            <div class="gridview cl">
+                                <a class="item">
+                                    <b class="icon i-android"></b>
+                                    <h2>android</h2>
+                                    <p>中文俗称安卓，是一个基于Linux内核的移动操作系统，由Google成立的Open Handset Alliance（OHA，开放手持设备联盟）持续领导与开发，主要设计用于触控荧幕移动设备如智能手机和平板电脑。</p>
+                                </a>
+                                <a class="item">
+                                    <b class="icon i-apple"></b>
+                                    <h2>iphone</h2>
+                                    <p>苹果公司2007年1月9日和Cingular电信公司推出的一款手机，2007年6月29日在美国上市。和iPod 一样，iPhone用iTunes同步，不仅可以是音乐、图片，还可以是通讯簿、行事历、照片、记事、书签、电子邮件信箱等，内建200万像素相机，有可以直接接驳普
+                                        通耳机的3.5mm的接头，并自带喇叭，还有mic和iPod接头。
+                                    </p>
+                                </a>
+                                <a class="item">
+                                    <b class="icon i-window"></b>
+                                    <h2>winPhone</h2>
+                                    <p>微软于2010年10月21日正式发布的一款手机操作系统，初始版本命名为Windows Phone 7.0 。基于Windows CE内核，采用了一种称为Metro的用户界面(UI)，并将微软旗下的Xbox
+                                        Live游戏、Xbox Music音乐与独特的视频体验集成至手机中。</p>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="tabs-slide">
+                            <div class="search-box">
+                                <a class="pos-left">取消</a>
+                                <div class="input-box">
+                                    <div class="i-left">
+                                        <b class="icon i-search"></b>
+                                    </div>
+                                    <input type="text" id="iSearch" class="input" placeholder="请输入关键词" />
+                                </div>
+                            </div>
+                            <div class="form-box">
+                                <div class="form-logo">
+                                    <img src="dist/images/logo.png" />
+                                </div>
+                                <div class="form-input">
+                                    <div class="form-item">
+                                        <div class="input-box input-icon">
+                                            <div class="i-left">
+                                                <a class="icon i-user"></a>
+                                            </div>
+                                            <input type="text" id="iName" class="input" tabindex="1" placeholder="邮箱/用户名/已验证手机" />
+                                        </div>
+                                    </div>
+                                    <div class="form-item">
+                                        <div class="input-box input-code">
+                                            <div class="i-left">
+                                                <a class="icon i-mobile"></a>
+                                            </div>
+                                            <input type="text" id="iCode" class="input" tabindex="2" placeholder="手机验证码" />
+                                            <a class="i-right btn btn-primary">获取验证码</a>
+                                        </div>
+                                    </div>
+                                    <div class="form-item">
+                                        <div class="input-box input-icon">
+                                            <div class="i-left">
+                                                <a class="icon i-lock"></a>
+                                            </div>
+                                            <input type="password" id="iPwd" class="input" tabindex="3" placeholder="密码" />
+                                            <a class="i-right">
+                                                <b class="icon i-view"></b>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-btn">
+                                    <a class="btn btn-primary">登 录</a>
+                                </div>
+                                <div class="form-other">
+                                    <a class="pwd">找回密码</a>
+                                    <a class="sign">免费注册</a>
+                                </div>
+                            </div>
+                        </div></div>
+                    </div>
+                </div>
+                <div class="panel tabs-panel toggle-panel open">
+                    <div class="panel-title">
+                        <span>Tabs</span>
+                        <div class="pos-right">
+                            <b class="icon i-carat-down"></b>
+                        </div>
+                    </div>
+                    <div class="panel-content">
+                        <div class="tabs">
+                            <a class="item active">首页</a>
+                            <a class="item">图标</a>
+                            <a class="item">其它项</a>
+                            <div class="line"></div>
+                        </div>
+                        <div class="tabs nav-tabs">
+                            <a class="item">首页</a>
+                            <a class="item active">图标</a>
+                            <a class="item">其它项</a>
+                        </div>
+                        <div class="tabs lump-tabs">
+                            <a class="item">首页</a>
+                            <a class="item">图标</a>
+                            <a class="item">其它项</a>
+                            <div class="line"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel alert-panel toggle-panel open">
+                    <div class="panel-title">
+                        <span>Alert</span>
+                        <div class="pos-right">
+                            <b class="icon i-carat-down"></b>
+                        </div>
+                    </div>
+                    <div class="panel-content">
+                        <div class="alert alert-success">
+                            success
+                        </div>
+                        <div class="alert alert-warning">
+                            warning
+                        </div>
+                        <div class="alert alert-info">
+                            info
+                        </div>
+                        <div class="alert alert-danger">
+                            danger
+                        </div>
+                    </div>
+                </div>
+                <div class="panel switch-panel toggle-panel open">
+                    <div class="panel-title">
+                        <span>Switch</span>
+                        <div class="pos-right">
+                            <b class="icon i-carat-down"></b>
+                        </div>
+                    </div>
+                    <div class="panel-content">
+                        <a class="switch-box">
+                            <div class="switch">
+                                <div class="switch-handle"></div>
+                            </div>
+                        </a>
+                        <a class="switch-box">
+                            <div class="switch switch-text">
+                                <div class="pos-left"></div>
+                                <div class="pos-right"></div>
+                                <div class="switch-handle"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

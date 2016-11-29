@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<!--[if IE 6]><html class="ie6"><![endif]-->
+<!--[if IE 7]><html class="ie7"><![endif]-->
+<!--[if IE 8]><html class="ie8"><![endif]-->
+<!--[if IE 9]><html class="ie9"><![endif]-->
+<!--[if(gt IE 9)|!(IE)]><!-->
+<html lang="en">
+    <!--<![endif]-->
+    <head>
+        <meta charset="utf-8" />
+        <title>手机区号</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-capable-style" content="blank" />
+        <meta name="format-detection" content="telephone=no,email=no" />
+        <link rel="shortcut icon" href="favicon.ico" />
+        <link rel="stylesheet" type="text/css" href="dist/css/base.css" />
+        <!--[if lt IE 9]>
+            <script type="text/javscript" src="lib/html5shiv.min.js"></script>
+            <script type="text/javscript" src="lib/respond.min.js"></script>
+        <![endif]-->
+        <script type="text/javascript" src="dist/js/lib/jquery.js"></script>
+        <script type="text/javascript" src="dist/js/lib/template.js"></script>
+        <script type="text/javascript" src="dist/js/base.js"></script>
+        <script type="text/javascript" src="dist/js/layer.js"></script>
+        <script type="text/javascript" src="dist/js/icon.js"></script>
+        <script type="text/javascript" src="dist/js/moiblecode.js"></script>
+        <style type="text/css">
+            .panel-title{padding:6px 12px;line-height:18px;font-size:18px;background-color:#e5e5e5;border-radius:0;}
+            .panel-content{border-radius:0;}
+            .alp-box{position:fixed;top:20%;right:0;background-color:#fff;}
+            .alp-box .item{padding:1px 5px;}   
+            .alp-box .active{color:#f00;}                     
+        </style>
+    </head>
+
+    <body>
+        <div class="page moiblecode-page">
+            <div class="header">
+                <div class="wrapper">
+                    <a class="pos-left" onclick="stanUI.goBack()">
+                        <b class="icon i-carat-left"></b>
+                    </a>
+                    <div class="title">手机区号</div>
+                    <a class="pos-right">
+                        <b class="icon i-search"></b>
+                    </a>
+                </div>
+            </div>
+            <div class="content full-bottom-content">
+                <div class="wrapper">
+                    <div class="panel moible-panel"></div>
+                    <div class="alp-box"></div>
+                    <script type="text/html" id="J_moibleTmpl">
+                        {{each data as json}}
+                            <div class='panel-title'>{{json.alp}}</div>
+                            <div class='panel-content listview'>
+                                {{each json.list as ls}}
+                                    <a class='item'>
+                                        <span>{{ls.name}}</span>
+                                        <i class='i-right'>+{{ls.code}}</i>
+                                    </a>
+                                {{/each}}
+                            </div>
+                            {{/each}}
+                    </script>
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>

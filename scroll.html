@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<!--[if IE 6]><html class="ie6"><![endif]-->
+<!--[if IE 7]><html class="ie7"><![endif]-->
+<!--[if IE 8]><html class="ie8"><![endif]-->
+<!--[if IE 9]><html class="ie9"><![endif]-->
+<!--[if(gt IE 9)|!(IE)]><!-->
+<html lang="en">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8" />
+    <title>滚动条到底部加载数据</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable-style" content="blank" />
+    <meta name="format-detection" content="telephone=no,email=no" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="dist/css/base.css" />
+    <!--[if lt IE 9]>
+        <script type="text/javscript" src="lib/html5shiv.min.js"></script>
+        <script type="text/javscript" src="lib/respond.min.js"></script>
+    <![endif]-->
+    <script type="text/javascript" src="dist/js/lib/jquery.js"></script>  
+    <script type="text/javascript" src="dist/js/lib/template.js"></script>
+    <script type="text/javascript" src="dist/js/base.js"></script>
+    <script type="text/javascript" src="dist/js/layer.js"></script>
+    <script type="text/javascript">
+         $(function(){
+            var page=1,
+                pageSize=10;
+            $('.listview').stanScrollLoad({
+                success:function(p,lockState){
+                    stanUI.httpRequest({
+                        url:'http://apis.baidu.com/avatardata/mingrenmingyan/lookup?keyword=天天&page='+page+'&rows='+pageSize,
+                        type:'get',
+                        headerType:'apikey',
+                        headerValue:'77a37f9575227131d5c1b1a77c6ea7f3',
+                        dataType:'json',
+                        tips: '正在努力加载名人名言信息',
+                        success:function(data){
+                            if(data.error_code=='0'){ 
+                                var total=data.total,
+                                    pageNum=page;
+                                $('.listview').append(template('J_listTmpl',data)); 
+                                if(page*pageSize>total){
+                                    pageNum=0;
+                                }
+                                lockState(pageNum);      
+                                page++;
+                            }                  
+                        }
+                    });
+                }
+            });
+            $('.h-right').click(function(){
+
+            });
+        });
+    </script> 
+    <style type="text/css">
+        .panel-title {
+            padding: 6px 12px;
+            line-height: 18px;
+            font-size: 18px;
+            background-color: #e5e5e5;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page scroll-page">
+        <div class="header">
+            <div class="pos-left" onclick="stanUI.goBack()">
+                <a class="icon i-carat-left"></a>
+            </div>
+            <div class="title">滚动条到底部加载数据</div>
+            <div class="pos-right">
+                <a class="icon i-search"></a>
+            </div>
+        </div>
+        <div class="content full-bottom-content">
+            <div class="wrap">
+                <div class="panel scroll-panel">
+                    <div class="listview"></div>
+                    <script type="text/html" id="J_listTmpl">
+                        {{each result as json}}
+                            <a class='item'>
+                                <span>{{json.famous_saying}}</span>
+                            </a>
+                        {{/each}}
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/html" id="J_searchTmpl">
+        <div class='search'>
+            <a class='s-l'>
+                <span>取消</span>
+            </a>
+            <div class='search-box'>
+                <b class='b-l m-icon m-search-g'></b>
+                <input type='text' id='iSearch' placeholder='请输入病症、病例或医生名' />
+            </div>
+        </div>
+    </script>
+    <script type="text/html" id="J_searchListTmpl">
+          <div class='wrapper full-bottom-wrapper'>
+                <div class='search-content'>
+                    <div class='listview'>
+
+                    </div>
+                </div>
+            </div>
+
+    </script>
+</body>
+
+</html>

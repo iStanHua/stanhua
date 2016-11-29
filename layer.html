@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<!--[if IE 6]><html class="ie6"><![endif]-->
+<!--[if IE 7]><html class="ie7"><![endif]-->
+<!--[if IE 8]><html class="ie8"><![endif]-->
+<!--[if IE 9]><html class="ie9"><![endif]-->
+<!--[if(gt IE 9)|!(IE)]><!-->
+<html lang="en">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8" />
+    <title>弹窗</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable-style" content="blank" />
+    <meta name="format-detection" content="telephone=no,email=no" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="dist/css/base.css" />
+    <!--[if lt IE 9]>
+            <script type="text/javscript" src="dist/js/lib/html5shiv.min.js"></script>
+            <script type="text/javscript" src="dist/js/lib/respond.min.js"></script>
+        <![endif]-->
+    <script type="text/javascript" src="dist/js/lib/jquery.js"></script>
+    <script type="text/javascript" src="dist/js/base.js"></script>
+    <script>
+            var str='你好，欢迎来到stan',
+                i=0;
+            function pageLayer(){
+                stanLayer.page({
+                    hash:true,
+                    animation: 'fadeR',
+                    title: '弹窗',
+                    back: '返回',
+                    ok: '确定',
+                    content: '<div class="layer-wrap">'+str+'</div>'
+            
+                });
+            }
+            function msgLayer(){
+                stanLayer.msg(str+i,2);
+                i++;
+            }
+            function alertLayer(){
+                stanLayer.alert(str);
+            }
+            function confirmLayer() {
+                stanLayer.confirm(str,['取消','确定'],function($layer){
+                    stanLayer.close($layer.attr('data-index'));
+                },function(){
+                    stanLayer.msg('确定成功');
+                    stanLayer.closeAll();
+                });
+            }
+            function iframeLayer() {
+                stanLayer.page({
+                    hash:true,
+                    url:'moiblecode.html',
+                    time:0
+                });
+            }
+            function openLayer() {
+                stanLayer.open('',{
+                    clickClose:true,
+                    content:str
+                });
+            }
+            function openTopLayer() {
+                stanLayer.open('top',{
+                    clickClose:true,
+                    content:str
+                });
+            }
+            function openBottomLayer() {
+                stanLayer.open('bottom',{
+                    clickClose:true,
+                    content:str
+                });
+            }
+            function openRightLayer() {
+                stanLayer.open('right',{
+                    clickClose:true,
+                    content:str
+                });
+            }
+            function openLeftLayer() {
+                stanLayer.open('left',{
+                    clickClose:true,
+                    content:str
+                });
+            }
+            function openWHLayer() {
+                stanLayer.open('',{
+                    clickClose:true,
+                    width:300,
+                    height:300,
+                    content:str
+                });
+            }
+            function pwdLayer() {
+                stanLayer.payPwd({
+                    success: function ($con) {
+                    },
+                    submitCallback: function (pwd) {
+                        stanLayer.alert(pwd);
+                    }
+                });
+            }
+        </script>
+    <style type="text/css">
+        .panel-title {
+            padding: 6px 12px;
+            line-height: 18px;
+            font-size: 18px;
+            background-color: #e5e5e5;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page moiblecode-page">
+        <div class="header">
+            <div class="pos-left" onclick="stanUI.goBack()">
+                <a class="icon i-carat-left"></a>
+            </div>
+            <div class="title">弹窗</div>
+            <div class="pos-right">
+                <a class="icon i-search"></a>
+            </div>
+        </div>
+        <div class="content full-bottom-content">
+            <div class="wrap">
+                <div class="panel layer-panel">
+                    <div class="listview">
+                        <a class="item current" onclick="pageLayer()"><span>页面弹窗</span></a>
+                        <a class="item" onclick="openLayer()"><span>open弹窗</span></a>
+                        <a class="item" onclick="openWHLayer()"><span>open高宽弹窗</span></a>
+                        <a class="item" onclick="openTopLayer()"><span>openTop弹窗</span></a>
+                        <a class="item" onclick="openBottomLayer()"><span>openBottom弹窗</span></a>
+                        <a class="item" onclick="openLeftLayer()"><span>openLeft弹窗</span></a>
+                        <a class="item" onclick="openRightLayer()"><span>openRight弹窗</span></a>
+                        <a class="item" onclick="stanLayer.loading('努力加载中...')"><span>加载弹窗</span></a>
+                        <a class="item" onclick="iframeLayer()"><span>iframe弹窗</span></a>
+                        <a class="item" onclick="msgLayer()"><span>msg弹窗</span></a>
+                        <a class="item" onclick="alertLayer()"><span>提示弹窗</span></a>
+                        <a class="item" onclick="confirmLayer()"><span>确认弹窗</span></a>
+                        <a class="item" onclick="pwdLayer()"><span>密码弹窗</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

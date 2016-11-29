@@ -239,7 +239,7 @@
                 opts = $.extend(defaults, options),
                 tips = opts.tips;
             if (tips != '') {
-                loading(tips, { time: 3 });
+                stanLayer.loading(tips, { time: 3 });
             }
             $.ajax({
                 url: opts.url,
@@ -306,7 +306,7 @@
                 tips = opts.tips,
                 xmlhttp;
             if (tips != '') {
-                loading(tips, { time: 3 });
+                stanLayer.loading(tips, { time: 3 });
             }
             if (window.XMLHttpRequest) {
                 // code for IE7+, Firefox, Chrome, Opera, Safari
